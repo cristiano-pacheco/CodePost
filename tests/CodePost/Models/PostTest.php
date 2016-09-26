@@ -166,8 +166,8 @@ class PostTest extends AbstractTestCase
 
         $tag2 = Tag::create(['name' => 'Tag 2']);
 
-        $tag1->posts()->attach($post->id);
-        $tag2->posts()->attach($post->id);
+        $tag1->posts()->save($post);
+        $tag2->posts()->save($post);
 
         $this->assertCount(1, Post::all());
 
