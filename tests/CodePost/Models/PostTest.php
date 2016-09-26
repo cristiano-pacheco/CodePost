@@ -2,6 +2,7 @@
 
 namespace CodePress\CodePost\Tests\Models;
 
+use CodePress\CodeCategory\Models\Category;
 use CodePress\CodePost\Models\Post;
 use CodePress\CodePost\Tests\AbstractTestCase;
 use CodePress\CodeTag\Models\Tag;
@@ -157,26 +158,47 @@ class PostTest extends AbstractTestCase
         $this->assertEquals('Post 2', $posts[1]->title);
     }
 
-//    public function test_can_add_posts_to_tags()
-//    {
-//        $post = Post::create(['title' => 'Post', 'content' => 'Content']);
-//
-//        $tag1 = Tag::create(['name' => 'Tag 1']);
-//
-//        $tag2 = Tag::create(['name' => 'Tag 2']);
-//
-//        $tag1->posts()->save($post);
-//        $tag2->posts()->save($post);
-//
-//        $this->assertCount(1,Post::all());
-//
-//        $this->assertEquals('Post', $tag1->posts->first()->name);
-//        $this->assertEquals('Post', $tag2->posts->first()->name);
-//
-//        $tags = Post::find(1)->tags;
-//        $this->assertCount(2, $tags);
-//        $this->assertEquals('Tag 1', $tags[0]->name);
-//        $this->assertEquals('Tag 2', $tags[1]->name);
-//    }
+    public function test_can_add_posts_to_tags()
+    {
+        $post = Post::create(['title' => 'Post', 'content' => 'Content']);
 
+        $tag1 = Tag::create(['name' => 'Tag 1']);
+
+        $tag2 = Tag::create(['name' => 'Tag 2']);
+
+        $tag1->posts()->attach($post->id);
+        $tag2->posts()->attach($post->id);
+
+        $this->assertCount(1, Post::all());
+
+        $this->assertEquals('Post', $tag1->posts->first()->name);
+        $this->assertEquals('Post', $tag2->posts->first()->name);
+
+        $tags = Post::find(1)->tags;
+        $this->assertCount(2, $tags);
+        $this->assertEquals('Tag 1', $tags[0]->name);
+        $this->assertEquals('Tag 2', $tags[1]->name);
+    }
+
+    public function test_can_add_categories_to_posts()
+    {
+        $post = Post::create(['title' => 'Post', 'content' => 'Content']);
+
+        $category1 = Category::create(['name' => 'Category 1']);
+
+        $category2 = Category::create(['name' => 'Category 2']);
+
+        $category1->posts()->save($post);
+        $category2->posts()->save($post);
+
+        $this->assertCount(1, Post::all());
+
+        $this->assertEquals('Post', $category1->posts->first()->name);
+        $this->assertEquals('Post', $category2->posts->first()->name);
+
+        $categories = Post::find(1)->categories;
+        $this->assertCount(2, $categories);
+        $this->assertEquals('Category 1', $categories[0]->name);
+        $this->assertEquals('Category 2', $categories[1]->name);
+    }
 }
