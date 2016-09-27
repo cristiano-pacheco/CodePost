@@ -2,6 +2,8 @@
 
 namespace CodePress\CodePost\Providers;
 
+use CodePress\CodePost\Repository\PostRepositoryEloquent;
+use CodePress\CodePost\Repository\PostRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class CodeCategoryServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class CodeCategoryServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->bind(PostRepositoryInterface::class, PostRepositoryEloquent::class);
     }
 }
