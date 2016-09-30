@@ -171,8 +171,8 @@ class PostTest extends AbstractTestCase
 
         $this->assertCount(1, Post::all());
 
-        $this->assertEquals('Post', $tag1->posts->first()->name);
-        $this->assertEquals('Post', $tag2->posts->first()->name);
+        $this->assertEquals('Post', $tag1->posts->first()->title);
+        $this->assertEquals('Post', $tag2->posts->first()->title);
 
         $tags = Post::find(1)->tags;
         $this->assertCount(2, $tags);
@@ -193,8 +193,8 @@ class PostTest extends AbstractTestCase
 
         $this->assertCount(1, Post::all());
 
-        $this->assertEquals('Post', $category1->posts->first()->name);
-        $this->assertEquals('Post', $category2->posts->first()->name);
+        $this->assertEquals('Post', $category1->posts->first()->title);
+        $this->assertEquals('Post', $category2->posts->first()->title);
 
         $categories = Post::find(1)->categories;
         $this->assertCount(2, $categories);
