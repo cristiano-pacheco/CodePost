@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "504c319e099cf38d57132f7355bae337",
-    "content-hash": "4fb9766ab5a4c3ec708b3293d9ec2ec9",
+    "hash": "4e3402e7c9d64a04101bbc2c059e802c",
+    "content-hash": "8d32e37a93c16fba500a8e1aa64c3ee3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -123,6 +123,55 @@
                 "slugify"
             ],
             "time": "2016-02-11 09:53:46"
+        },
+        {
+            "name": "codeedu/laravel-tinymce",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeedu/laravel-tinymce.git",
+                "reference": "0590b0b5e48feb33bf19decd84816b6cd0b8e6ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeedu/laravel-tinymce/zipball/0590b0b5e48feb33bf19decd84816b6cd0b8e6ce",
+                "reference": "0590b0b5e48feb33bf19decd84816b6cd0b8e6ce",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ktquez\\Tinymce\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alan Albuquerque: ktquez",
+                    "email": "ktquez@gmail.com"
+                },
+                {
+                    "name": "Luiz Carlos",
+                    "email": "argentinaluiz@gmail.com"
+                }
+            ],
+            "description": "TinyMCE editor for Laravel and Lumen Framework",
+            "homepage": "https://github.com/codeedu/laravel-tinymce",
+            "keywords": [
+                "WYSIWYG",
+                "ckeditor",
+                "editor",
+                "laravel",
+                "lumen",
+                "textarea",
+                "tinymce"
+            ],
+            "support": {
+                "source": "https://github.com/codeedu/laravel-tinymce/tree/master"
+            },
+            "time": "2016-03-22 18:59:28"
         },
         {
             "name": "cristianopacheco/code-category",
@@ -3709,7 +3758,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "codeedu/laravel-tinymce": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
