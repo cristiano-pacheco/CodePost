@@ -58,4 +58,10 @@ class AdminPostsController extends Controller
         $this->repository->delete($id);
         return redirect()->route('admin.posts.index');
     }
+
+    public function deleted()
+    {
+        $posts = $this->repository->getDeleted();
+        return $this->response->view('codepost::deleted', compact('posts'));
+    }
 }

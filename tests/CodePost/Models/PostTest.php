@@ -215,5 +215,59 @@ class PostTest extends AbstractTestCase
         $this->assertEquals('Comentario 2',$comments[1]->content);
     }
 
+    public function test_can_soft_delete()
+    {
+        $post = $this->createPost();
+        $post->delete();
+
+        $this->assertTrue($post->trashed());
+        $this->assertCount(0, Post::all());
+    }
+
+    public function test_can_get_rows_deleted()
+    {
+        $post = $this->createPost();
+        $post->delete();
+
+        Post::create(['title' => 'Post Test2', 'content' => 'Content Test2']);
+
+        $posts = Post::onlyTrashed()->get();
+        $this->assertEquals(1, $posts[0]->id);
+        $this->assertEquals('Post Test', $posts[0]->title);
+    }
+
+    public function test_can_get_rows_deleted_and_activated()
+    {
+        $post = $this->createPost();
+        $post->delete();
+
+        Post::create(['title' => 'Post Test2', 'content' => 'Content Test2']);
+
+        $posts = Post::withTrashed()->get();
+        $this->assertEquals(1, $posts[0]->id);
+        $this->assertEquals('Post Test', $posts[0]->title);
+        $this->assertCount(2, $posts);
+    }
+
+
+    public function test_can_force_delete()
+    {
+        $post = $this->createPost();
+        $post->forceDelete();
+
+        $this->assertCount(0, Post::all());
+    }
+
+    public function test_can_restore_rows_from_deleted()
+    {
+        $post = $this->createPost();
+        $post->delete();
+        $post->restore();
+
+        $posts = Post::all();
+        $this->assertEquals(1, $posts[0]->id);
+        $this->assertEquals('Post Test', $posts[0]->title);
+    }
+
 
 }

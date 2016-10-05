@@ -27,4 +27,7 @@ Route::group([
     Route::get('/{id}/delete/', 'AdminPostsController@delete')
         ->name('delete');
 
+    Route::get('/deleted', 'AdminPostsController@deleted')
+        ->name('deleted');
+
 });
